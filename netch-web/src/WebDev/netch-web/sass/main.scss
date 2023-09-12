@@ -1,0 +1,149 @@
+/*20170327 16:25*/
+@import "../module/reset";
+@import "../module/jquery-ui-1.12.1.scss";
+@import "../module/ui.jqgrid.scss";
+@import "../module/validationEngine.jquery.scss";
+// @import "../module/jquery-breadcrumbs.scss";
+@import "../module/base.scss";
+
+@import "../module/bootstrap-all";
+
+@import "../module/font-awesome-all";
+
+.text-red {
+		color:red
+}
+
+legend {
+	color: #3B7092;
+	/*font-size: 13px;*/
+	font-weight: bold;
+	line-height: 26px;
+}
+
+.btn1.ui-button, .ui-dialog-buttonset button.ui-button {
+  line-height: 0px !important;
+}
+
+.ui-widget-overlay {
+  opacity: .3;
+}
+
+// .ui-widget-content .ui-icon, .ui-widget-header .ui-icon {
+//   background-image: url("images/ui-icons_ffffff_256x240.png");
+// }
+
+.ui-dialog {
+	.ui-dialog-titlebar-close {
+		&:hover .ui-icon, &:focus .ui-icon {
+			background-color: !important;
+			border: !important;
+			background: !important;
+  		background-image: url("images/ui-icons_004276_256x240.png");
+		}
+		background-color: Transparent;
+		border: none;
+	}
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.table{
+	border-spacing: 2px !important;
+	border-collapse: separate !important;
+}
+
+th {
+  text-align: center !important;
+}
+
+/*--------------------------------------*/
+.tb_style_1 {
+    background: #E4E8E9 !important;
+    border: 1px solid #9EBCAE !important;
+    
+    padding: 8px;
+	/*
+    height: 40px;
+    line-height: 40px;
+    word-break: break-all;
+    */
+}
+
+.hd_style_1 {
+    background: #E4E8E9 !important;
+    border: 1px solid #9EBCAE !important;
+    border-top-color: #009999 !important;
+    
+    padding: 8px;
+	/*
+    height: 40px;
+    line-height: 40px;
+    word-break: break-all;
+    */
+}
+
+.hd_style_2 {
+    background: #84989B !important;
+    border: 1px solid #9EBCAE !important;
+    border-top-color: #009999 !important;
+    color: #FFFFFF;
+    text-align: center;
+    
+    padding: 8px;
+	/*
+    height: 40px;
+    line-height: 40px;
+    word-break: break-all;
+    */
+}
+
+.td_style_1 {
+    background: #FFFFFF !important;
+    border: 1px solid #9EBCAE !important;
+    border-top-color: #009999 !important;
+    
+    padding: 8px;
+    /*
+    height: 40px;
+    line-height: 40px;
+    word-break: break-all;
+    */
+}
+
+.rowMargin{
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.treeview{
+    font-family: "新細明體", Arial, sans-serif, "標楷體", "華康中黑體(P)";
+    font-size: 15px;
+    line-height: 16px;
+}
+
+/* http://www.bootply.com/126437 */
+
+
+.row-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
+	div[class*='_style_'] {
+	    flex:1 1 auto;
+	    margin:-1px;
+		div {
+			/*width:100%;*/
+		}
+	}
+}
+

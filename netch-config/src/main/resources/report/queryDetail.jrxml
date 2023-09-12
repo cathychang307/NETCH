@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="queryDetail" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="756" leftMargin="43" rightMargin="43" topMargin="28" bottomMargin="28" uuid="b5f9bad4-77a5-4354-a466-9a436ff622af">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="com.bot.cqs.query.command.*"/>
+	<import value="com.bot.cqs.query.util.*"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bot.cqs.query.persistence.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<import value="com.bot.cqs.query.view.pdf.*"/>
+	<parameter name="systemName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["台灣銀行"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="reportName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["測試報表"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataCommand" class="com.bot.cqs.query.command.QueryInquiryLogCommand" isForPrompting="false"/>
+	<parameter name="SESSION_QUERY_USER" class="com.bot.cqs.query.persistence.QueryUser" isForPrompting="false"/>
+	<field name="chargeBankName" class="java.lang.String">
+		<fieldDescription><![CDATA[chargeBankName]]></fieldDescription>
+	</field>
+	<field name="chargeBankShortDesc" class="java.lang.String">
+		<fieldDescription><![CDATA[chargeBankShortDesc]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="conditions" class="java.lang.String">
+		<fieldDescription><![CDATA[conditions]]></fieldDescription>
+	</field>
+	<field name="continueFlag" class="java.lang.String">
+		<fieldDescription><![CDATA[continueFlag]]></fieldDescription>
+	</field>
+	<field name="inquiryAccount" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryAccount]]></fieldDescription>
+	</field>
+	<field name="inquiryBankAccount" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryBankAccount]]></fieldDescription>
+	</field>
+	<field name="inquiryBankCode" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryBankCode]]></fieldDescription>
+	</field>
+	<field name="inquiryBizId" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryBizId]]></fieldDescription>
+	</field>
+	<field name="inquiryCacheFlag" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[inquiryCacheFlag]]></fieldDescription>
+	</field>
+	<field name="inquiryChargeBankId" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryChargeBankId]]></fieldDescription>
+	</field>
+	<field name="inquiryDate" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryDate]]></fieldDescription>
+	</field>
+	<field name="inquiryEndDatetime" class="java.util.Date">
+		<fieldDescription><![CDATA[inquiryEndDatetime]]></fieldDescription>
+	</field>
+	<field name="inquiryErrorCode" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryErrorCode]]></fieldDescription>
+	</field>
+	<field name="inquiryErrorMsg" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryErrorMsg]]></fieldDescription>
+	</field>
+	<field name="inquiryFee" class="java.lang.Float">
+		<fieldDescription><![CDATA[inquiryFee]]></fieldDescription>
+	</field>
+	<field name="inquiryId" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryId]]></fieldDescription>
+	</field>
+	<field name="inquiryLogKey" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryLogKey]]></fieldDescription>
+	</field>
+	<field name="inquiryName" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryName]]></fieldDescription>
+	</field>
+	<field name="inquiryQryBankId" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryQryBankId]]></fieldDescription>
+	</field>
+	<field name="inquiryResponse" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryResponse]]></fieldDescription>
+	</field>
+	<field name="inquiryResponseFormat" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryResponseFormat]]></fieldDescription>
+	</field>
+	<field name="inquiryStartDatetime" class="java.util.Date">
+		<fieldDescription><![CDATA[inquiryStartDatetime]]></fieldDescription>
+	</field>
+	<field name="inquiryTchId" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryTchId]]></fieldDescription>
+	</field>
+	<field name="inquiryTime" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryTime]]></fieldDescription>
+	</field>
+	<field name="inquiryTxCode" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryTxCode]]></fieldDescription>
+	</field>
+	<field name="inquiryUserName" class="java.lang.String">
+		<fieldDescription><![CDATA[inquiryUserName]]></fieldDescription>
+	</field>
+	<field name="msgFid" class="java.lang.String">
+		<fieldDescription><![CDATA[msgFid]]></fieldDescription>
+	</field>
+	<field name="msgId" class="java.lang.String">
+		<fieldDescription><![CDATA[msgId]]></fieldDescription>
+	</field>
+	<field name="seqNo" class="java.lang.String">
+		<fieldDescription><![CDATA[seqNo]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="169" splitType="Stretch">
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-1" x="0" y="5" width="754" height="25" uuid="2a412063-95c2-460e-a047-34aa46c8cb1d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="18" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{systemName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="0" y="35" width="754" height="20" uuid="406212eb-4bf5-4e8d-bd7a-273c1cf8c9ce"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="16" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-1" x="2" y="80" width="65" height="20" uuid="72df4ec5-27c5-4597-8448-ba4d727f5ca7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[付費分行：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="2" y="100" width="65" height="20" uuid="a92a5bb9-557d-485a-a0fc-2d0d0cc6892f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢人ID：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-3" x="2" y="140" width="65" height="20" uuid="71c73197-e2e2-41a4-a952-61a21588ace7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[時　　間：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-4" x="575" y="80" width="60" height="20" uuid="ecf8615a-a2fa-434b-8095-47a2331124f8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[使 用 者：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-5" x="575" y="100" width="60" height="20" uuid="e9a2d7d4-a7f3-4215-8b39-12c5be530fc0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[列印日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-6" x="575" y="120" width="60" height="20" uuid="277e8f56-f1f9-4008-ba94-31daa0cae74b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="72" y="80" width="197" height="20" uuid="4749ed16-588c-4655-ae72-e4af2e8018e8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getInChargeBankId() != null ?$P{dataCommand}.getInChargeBankId():"ALL"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-4" x="72" y="100" width="197" height="20" uuid="e75d2a84-efc4-4f0e-a225-4ce1bcd9cebb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getInAccount() != null ?$P{dataCommand}.getInAccount():""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-5" x="137" y="140" width="55" height="20" uuid="8f731438-beb9-463e-8ce1-a415ea983bbc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getAccessDateTo() != null?DateUtil.toRocDate($P{dataCommand}.getAccessDateTo()):""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-6" x="639" y="80" width="115" height="20" uuid="043ccba5-a610-4d39-b33f-b884c6b7029f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SESSION_QUERY_USER} != null ?$P{SESSION_QUERY_USER}.getEmployeeName():""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-7" x="639" y="100" width="115" height="20" uuid="d2103e6e-a8b4-4084-bdff-6c04cf739f0f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[DateUtil.toRocDatetime( new Date() )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-16" x="2" y="60" width="65" height="20" uuid="3e2fde7c-8489-46e6-b90c-625e2fe61f64"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="10" isItalic="false" isUnderline="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢條件：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-18" x="72" y="140" width="55" height="20" uuid="75c4fe4f-e57b-4580-8522-6aa045851546"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getAccessDateFrom() != null ?DateUtil.toRocDate($P{dataCommand}.getAccessDateFrom()):""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-19" x="72" y="120" width="197" height="20" uuid="d6056e4c-4fc9-4c57-95db-4add2ea82c09"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getInTxCode() != null ?$P{dataCommand}.getInTxCode():"ALL"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-18" x="2" y="120" width="65" height="20" uuid="efecbfaa-cefe-471c-ab1a-1ab5525f204a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢類型：]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-21" x="127" y="140" width="10" height="20" uuid="69e95500-1922-4aa6-b46d-240ba890b895"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataCommand}.getAccessDateTo() != null?"-":""]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-8" mode="Opaque" x="0" y="10" width="32" height="20" backcolor="#E1E1FF" uuid="ce8ef2e3-b890-4abe-83ac-3612e86d0dd1"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-9" mode="Opaque" x="32" y="10" width="61" height="20" backcolor="#E1E1FF" uuid="cfc96e01-3aa8-4032-a72c-4667b6f9ab26"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-10" mode="Opaque" x="93" y="10" width="65" height="20" backcolor="#E1E1FF" uuid="a29737a1-9fdf-4b1e-818c-81a22e151359"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢者 ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-11" mode="Opaque" x="158" y="10" width="69" height="20" backcolor="#E1E1FF" uuid="b0921b13-f625-4f93-9e38-2ff402e23a0c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢者姓名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-13" mode="Opaque" x="227" y="10" width="54" height="20" backcolor="#E1E1FF" uuid="43a35046-b81c-4164-8e45-2b406edad86b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢類型]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-14" mode="Opaque" x="281" y="10" width="428" height="20" backcolor="#E1E1FF" uuid="090cc99a-93bd-4e31-9020-aeffdc4778d3"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[查詢條件]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-19" mode="Opaque" x="709" y="10" width="45" height="20" backcolor="#E1E1FF" uuid="dc16d2b3-b091-468a-9821-efa0557b38e1"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12" isBold="true" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[快取]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-11" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="32" height="34" uuid="5f06e325-ab47-4bba-a2bc-3b031476f5ff"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-12" stretchType="RelativeToTallestObject" mode="Transparent" x="32" y="0" width="61" height="34" uuid="b63ca158-f9c7-402c-951f-1402a0ca956c"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inquiryDate} !=null ? $F{inquiryDate}:""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-13" stretchType="RelativeToTallestObject" mode="Transparent" x="93" y="0" width="65" height="34" uuid="71a2eba6-f30d-49a5-9990-87339664d306"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inquiryAccount} != null ?$F{inquiryAccount}:""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-14" stretchType="RelativeToTallestObject" mode="Transparent" x="158" y="0" width="69" height="34" uuid="c066e42d-5edf-4f3b-a826-fb317ae806bc"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inquiryUserName} != null ?$F{inquiryUserName}:""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-15" stretchType="RelativeToTallestObject" mode="Transparent" x="227" y="0" width="54" height="34" uuid="afd7c74a-315a-4f38-9802-e060d2860922"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inquiryTxCode} != null ?$F{inquiryTxCode}:""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-16" stretchType="RelativeToTallestObject" mode="Transparent" x="281" y="0" width="428" height="34" uuid="a5946c03-3b4f-46bf-a36f-541a5b272a33"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conditions} !=null ? $F{conditions} :""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-20" stretchType="RelativeToTallestObject" mode="Transparent" x="709" y="0" width="45" height="34" uuid="29f14f7e-d291-4904-8901-b799f50d1e08"/>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="KAIU.TTF" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inquiryCacheFlag}.booleanValue() ?"Y":"N"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField evaluationTime="Page" isBlankWhenNull="false">
+				<reportElement key="textField-9" x="323" y="7" width="50" height="18" uuid="ef4a77d9-e963-4033-8c54-26d1976bfe1a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-7" x="373" y="7" width="10" height="18" uuid="b8204701-6c2d-4e7d-b0d9-950bd65bc456"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField-10" x="383" y="7" width="50" height="18" uuid="d5db8893-b2e8-478d-87b9-e5458aa9cd91"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

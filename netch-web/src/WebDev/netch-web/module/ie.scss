@@ -1,0 +1,287 @@
+/*-------------------------
+
+   F U N C / E X T E N D
+
+-------------------------*/
+
+.part-wrapper {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+.part {
+  .heading {
+    behavior: url(js/PIE.htc);
+    position: relative;
+    z-index: 1;
+  }
+  .p-block {
+    behavior: url(js/PIE.htc);
+    position: relative;
+    z-index: 1;
+    ol.upload-list div[class^="doc"] {
+      behavior: url(js/PIE.htc);
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+.additional, .btn {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+.note-list li {
+  .heading, .detail {
+    behavior: url(js/PIE.htc);
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.card {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+  ol > li .g-part img {
+    behavior: url(js/PIE.htc);
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/*-------------------------
+
+         I N I T
+
+-------------------------*/
+
+html, body {
+  font-size: 18px;
+}
+
+input[type="text"] {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #aaa;
+  font-size: 18px;
+}
+
+select {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #aaa;
+  font-size: 18px;
+  background-image: none;
+}
+
+.f-13 {
+  font-size: 13px !important;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+/*-------------------------
+
+         M A I N
+
+-------------------------*/
+
+#Document > * > section {
+  width: 980px;
+}
+
+/*-------------------------
+
+       H E A D E R
+
+-------------------------*/
+
+.progress {
+  .pc {
+    font-size: 16px;
+  }
+  .bar {
+    behavior: url(js/PIE.htc);
+    z-index: 1;
+  }
+}
+
+/*-------------------------
+
+      F O O T E R
+
+-------------------------*/
+
+footer > div section {
+  font-size: 12px;
+}
+
+/*-------------------------
+
+        I N D E X
+
+-------------------------*/
+
+.t24_wh {
+  color: #333;
+}
+
+.index_banner .login {
+  .ex2-short {
+    width: 90%;
+    height: 30px;
+    font-size: 12px;
+    background: url("../images/mem_icon2.png") no-repeat #fff 10px 5px;
+    padding: 8px 8px 0 40px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .ex2-short2 {
+    width: 90%;
+    height: 30px;
+    font-size: 12px;
+    background: url("../images/bir_icon2.png") no-repeat #fff 10px 5px;
+    padding: 8px 8px 0 40px;
+    color: #666;
+  }
+}
+
+/*-------------------------
+
+         P A G E S
+
+-------------------------*/
+
+h2.title, .part-wrapper > p:first-child {
+  font-size: 22px;
+}
+
+.part {
+  .heading {
+    font-size: 20px;
+    z-index: 2;
+  }
+  .p-block {
+    li {
+      > span.special {
+        width: 154px;
+      }
+      label {
+        margin-right: 8px;
+      }
+      input[type="radio"] {
+        margin-right: -2px;
+      }
+    }
+    ol.money div span {
+      font-size: 14px;
+    }
+  }
+}
+
+.note {
+  font-size: 14px;
+}
+
+.code {
+  font-size: 16px;
+}
+
+.otp .ex2-short {
+  height: 30px;
+  font-size: 12px;
+  padding: 0 10px;
+  width: 75%;
+  padding-top: 6px;
+}
+
+/*-------------------------
+      B U T T O N
+-------------------------*/
+
+.btn {
+  font-size: 16px;
+  &.next, &.confirm {
+    font-size: 22px;
+  }
+  &.upload {
+    width: 90px;
+  }
+  &.choose {
+    width: 120px;
+  }
+}
+
+/*-------------------------
+       U P L O A D
+-------------------------*/
+
+.file-wrapper {
+  font-size: 14px;
+  span {
+    padding: 5px 16px 5px 8px;
+    behavior: url(js/PIE.htc);
+    z-index: 1;
+  }
+}
+
+/*-------------------------
+         N O T E
+-------------------------*/
+
+.note-list li {
+  font-size: 20px;
+  .heading .fa {
+    font-size: 12px;
+  }
+  .detail {
+    font-size: 15px;
+  }
+}
+
+/*-------------------------
+         C A R D
+-------------------------*/
+
+.pc-wrapper .heading span {
+  font-size: 22px;
+  &:after {
+    font-size: 22px;
+  }
+}
+
+.card {
+  ol > li {
+    border-top: 1px solid #d7d7d7;
+    &:first-child {
+      border-top: none;
+    }
+    p {
+      font-size: 13px;
+    }
+    label {
+      margin-left: -2px;
+    }
+  }
+  .benefit {
+    font-size: 13px;
+  }
+}
+
+.pp-note {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=ie.css.map */

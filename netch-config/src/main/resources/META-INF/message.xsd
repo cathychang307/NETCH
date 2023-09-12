@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cqs.tch.org.tw/gateway" targetNamespace="http://cqs.tch.org.tw/gateway">
+    <xs:annotation>
+        <xs:documentation>
+            定義查詢及回覆訊息格式
+        </xs:documentation>
+    </xs:annotation>
+    <xs:element name="format">
+        <xs:annotation>
+            <xs:documentation>
+                訊息格式的根元素，內含一個以上的message子元素
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:message" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="message">
+        <xs:annotation>
+            <xs:documentation>
+                訊息格式主要元素，每一個訊息格式內含欄位或是欄位群組都包含在此元素內。元素具有代碼(id)、訊息方向(direction)、包含欄位數(field-counts)等屬性
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:field" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element ref="tns:group" minOccurs="0"/>
+                <xs:element ref="tns:transforms" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="direction" type="tns:dir-attr-type"/>
+            <xs:attribute name="field-counts" type="xs:integer" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="group">
+        <xs:annotation>
+            <xs:documentation>
+                欄位群組元素，每一個欄位群組內含一至多個欄位。元素具有名稱(name)、索引值(index)、包含欄位數(count)、可重複旗標(repeatable)、包含欄位最多重複次數(max-repeat-time)屬性。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:field" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="index" type="xs:string" use="required"/>
+            <xs:attribute name="count" type="xs:integer" use="required"/>
+            <xs:attribute name="repeatable" type="xs:boolean" use="optional"/>
+            <xs:attribute name="max-repeat-time" type="xs:integer" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="field">
+        <xs:annotation>
+            <xs:documentation>
+                欄位元素。元素具有名稱(name)、索引值(index)、型態(type)、欄位值長度(length)、初始值(init)、說明(desc)、對齊方式(align)屬性。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="index" type="xs:integer" use="required"/>
+            <xs:attribute name="type" type="tns:type-attr-type" use="required"/>
+            <xs:attribute name="length" type="xs:integer" default="1"/>
+            <xs:attribute name="init" type="xs:string" use="optional"/>
+            <xs:attribute name="desc" type="xs:string" use="optional"/>
+            <xs:attribute name="align" type="tns:align-attr-type" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transforms">
+        <xs:annotation>
+            <xs:documentation>
+                訊息格式轉換規則根元素。元素具有轉成格式代碼（to）屬性，並包含所有轉換規則元素（rule）集。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:rule" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="to" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rule">
+        <xs:annotation>
+            <xs:documentation>
+                格式轉換規則元素。元素具有原始訊息欄位索引值（src-index）、目的訊息欄位索引值（dest-index）、原始訊息欄位型態（src-type）、
+                目的訊息欄位型態（dest-type）、對齊（align）、補位值（padding）、描述（desc）屬性，若轉換規則為對應關係，則包含對應表子元素（map）。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:map" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="src-index" type="xs:integer" use="required"/>
+            <xs:attribute name="dest-index" type="xs:integer" use="required"/>
+            <xs:attribute name="src-type" type="tns:type-attr-type" use="optional"/>
+            <xs:attribute name="dest-type" type="tns:type-attr-type" use="required"/>
+            <xs:attribute name="align" type="tns:align-attr-type" use="optional"/>
+            <xs:attribute name="padding" type="xs:string" use="optional"/>
+            <xs:attribute name="desc" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="map">
+        <xs:annotation>
+            <xs:documentation>
+                規則值對應表。包含一至多個對應子規則（entry）。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:entry" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="entry">
+        <xs:annotation>
+            <xs:documentation>
+                規則值。含有鍵（key）、值（value）兩屬性。此與Java的Map類相同。
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="key" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="align-attr-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="R"/>
+            <xs:enumeration value="L"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="type-attr-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="9"/>
+            <xs:enumeration value="X"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="T"/>
+            <xs:enumeration value="TWND"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dir-attr-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="U"/>
+            <xs:enumeration value="D"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

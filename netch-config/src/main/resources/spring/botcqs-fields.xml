@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- field definition -->
+    <bean id="personalIdField" class="com.bot.cqs.query.util.queryField.PersonalIdInputField">
+        <property name="fieldName" value="personalId" />
+        <property name="fieldDesc" value="身分證統一編號" />
+        <property name="targetFieldName" value="inquiryId" />
+        <property name="minLength" value="10" />
+        <property name="maxLength" value="10" />
+        <property name="required" value="true" />
+    </bean>
+
+    <bean id="personalNameField" class="com.bot.cqs.query.util.queryField.SimpleQueryInputFieldDefinition">
+        <property name="fieldName" value="personalName" />
+        <property name="fieldDesc" value="姓名" />
+        <property name="targetFieldName" value="inquiryName" />
+        <property name="minLength" value="1" />
+        <property name="maxLength" value="20" />
+        <property name="required" value="false" />
+        <property name="convertToDoubleBytes" value="true" />
+        <property name="convertToDoubleBytesMode" value="1" /> <!-- error when no convertion -->
+    </bean>
+
+    <bean id="companyIdField" class="com.bot.cqs.query.util.queryField.BusinessIdInputField">
+        <property name="fieldName" value="companyId" />
+        <property name="fieldDesc" value="營利事業統一編號" />
+        <property name="targetFieldName" value="inquiryBizId" />
+        <property name="minLength" value="8" />
+        <property name="maxLength" value="8" />
+        <property name="required" value="true" />
+    </bean>
+
+    <bean id="obuCompanyIdField" class="com.bot.cqs.query.util.queryField.ObuBusinessIdInputField">
+        <property name="fieldName" value="companyId" />
+        <property name="fieldDesc" value="營利事業統一編號" />
+        <property name="targetFieldName" value="inquiryBizId" />
+        <property name="minLength" value="8" />
+        <property name="maxLength" value="8" />
+        <property name="required" value="true" />
+    </bean>
+
+    <bean id="companyNameField" class="com.bot.cqs.query.util.queryField.SimpleQueryInputFieldDefinition">
+        <property name="fieldName" value="companyName" />
+        <property name="fieldDesc" value="公司名稱" />
+        <property name="targetFieldName" value="inquiryName" />
+        <property name="minLength" value="1" />
+        <property name="maxLength" value="20" />
+        <property name="required" value="false" />
+        <property name="convertToDoubleBytes" value="true" />
+        <property name="convertToDoubleBytesMode" value="1" /> <!-- error when no convertion -->
+    </bean>
+
+    <bean id="obuCompanyNameField" class="com.bot.cqs.query.util.queryField.SimpleQueryInputFieldDefinition">
+        <property name="fieldName" value="companyName" />
+        <property name="fieldDesc" value="公司名稱" />
+        <property name="targetFieldName" value="inquiryName" />
+        <property name="minLength" value="1" />
+        <property name="maxLength" value="120" />
+        <property name="required" value="false" />
+    </bean>
+
+    <bean id="principalIdField" class="com.bot.cqs.query.util.queryField.PersonalIdInputField">
+        <property name="fieldName" value="principalId" />
+        <property name="fieldDesc" value="負責人身分證統一編號" />
+        <property name="targetFieldName" value="inquiryId" />
+        <property name="minLength" value="10" />
+        <property name="maxLength" value="10" />
+        <property name="required" value="false" />
+    </bean>
+
+    <bean id="bankCodeField" class="com.bot.cqs.query.util.queryField.NumericInputField">
+        <property name="fieldName" value="bankCode" />
+        <property name="fieldDesc" value="開戶行代號" />
+        <property name="targetFieldName" value="inquiryBankCode" />
+        <property name="minLength" value="9" />
+        <property name="maxLength" value="9" />
+        <property name="required" value="true" />
+        <property name="fillMode" value="0" /> <!-- 0 = prefix, 1 = suffix -->
+        <property name="fillChar" value="0" /> <!-- character -->
+    </bean>
+
+    <bean id="bankAccountField" class="com.bot.cqs.query.util.queryField.NumericInputField">
+        <property name="fieldName" value="bankAccount" />
+        <property name="fieldDesc" value="開戶行帳號" />
+        <property name="targetFieldName" value="inquiryBankAccount" />
+        <property name="minLength" value="9" />
+        <property name="maxLength" value="9" />
+        <property name="required" value="true" />
+        <property name="fillMode" value="0" /> <!-- 0 = prefix, 1 = suffix -->
+        <property name="fillChar" value="0" /> <!-- character -->
+    </bean>
+
+    <!-- ******************************************************************* -->
+
+    <!-- query request definition -->
+    <bean id="query4111" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="個人第一類查詢" />
+        <property name="transactionId" value="4111" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="personalIdField" />
+                <ref bean="personalNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第一類票信資料以個人戶戶號、戶名查詢交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4112" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="公司(法人)第一類查詢" />
+        <property name="transactionId" value="4112" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="companyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="companyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第一類票信資料以公司戶戶號、負責人統一編號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4113" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="帳戶帳號第一類查詢" />
+        <property name="transactionId" value="4113" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="bankCodeField" />
+                <ref bean="bankAccountField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第一類票信資料以開戶行代號、開戶行帳號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4114" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="個人第二類查詢" />
+        <property name="transactionId" value="4114" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="personalIdField" />
+                <ref bean="personalNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第二類票信資料以個人戶戶號、戶名查詢退票明細交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4115" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="公司(法人)第二類查詢" />
+        <property name="transactionId" value="4115" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="companyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="companyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第二類票信資料以公司戶戶號、負責人統一編號查詢退票明細交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4116" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="帳戶帳號第二類查詢" />
+        <property name="transactionId" value="4116" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="bankCodeField" />
+                <ref bean="bankAccountField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>第二類票信資料以開戶行代號、開戶行帳號查詢退票明細交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4121" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="個人甲類查詢" />
+        <property name="transactionId" value="4121" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="personalIdField" />
+                <ref bean="personalNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>甲類大額票信資料以個人戶戶號查詢</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4122" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="公司(法人)甲類查詢" />
+        <property name="transactionId" value="4122" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="companyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="companyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>甲類大額票信資料以公司戶戶號、負責人統一編號查詢</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4123" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="個人乙類查詢" />
+        <property name="transactionId" value="4123" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="personalIdField" />
+                <ref bean="personalNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>乙類大額票信資料以個人戶戶號查詢</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="query4124" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="公司(法人)乙類查詢" />
+        <property name="transactionId" value="4124" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="companyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="companyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>乙類大額票信資料以公司戶戶號、負責人統一编號查詢</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="query4132" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="OBU公司戶第一類查詢" />
+        <property name="transactionId" value="4132" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="obuCompanyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="obuCompanyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>OBU第一類票信資料以公司戶戶號、戶名、負責人統一編號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="query4133" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="OBU帳戶帳號第一類查詢" />
+        <property name="transactionId" value="4133" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="bankCodeField" />
+                <ref bean="bankAccountField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>OBU第一類票信資料以開戶行代號、開戶行帳號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="query4135" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="OBU公司戶第二類查詢" />
+        <property name="transactionId" value="4135" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="obuCompanyIdField" />
+                <ref bean="principalIdField" />
+                <ref bean="obuCompanyNameField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>OBU第二類票信資料以公司戶戶號、戶名、負責人統一編號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="query4136" class="com.bot.cqs.query.util.queryField.SimpleQueryRequestDefinition">
+        <property name="queryName" value="OBU帳戶帳號第二類查詢" />
+        <property name="transactionId" value="4136" />
+        <property name="queryInputFieldDefinition">
+            <list>
+                <ref bean="bankCodeField" />
+                <ref bean="bankAccountField" />
+            </list>
+        </property>
+        <property name="memo">
+            <list>
+                <value>OBU第二類票信資料以開戶行代號、開戶行帳號查詢交易</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 單筆查詢、多筆查詢 -->
+    <bean id="singlequeryhandler" class="com.bot.cqs.query.handler.MultiQueryHandler">
+        <property name="maxQueryCount" value="1"></property>
+        <property name="queryRequestDefinition">
+            <map>
+                <entry>
+                    <key>
+                        <value>4111</value>
+                    </key>
+                    <ref bean="query4111" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4112</value>
+                    </key>
+                    <ref bean="query4112" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4113</value>
+                    </key>
+                    <ref bean="query4113" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4114</value>
+                    </key>
+                    <ref bean="query4114" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4115</value>
+                    </key>
+                    <ref bean="query4115" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4116</value>
+                    </key>
+                    <ref bean="query4116" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4121</value>
+                    </key>
+                    <ref bean="query4121" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4122</value>
+                    </key>
+                    <ref bean="query4122" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4123</value>
+                    </key>
+                    <ref bean="query4123" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4124</value>
+                    </key>
+                    <ref bean="query4124" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4132</value>
+                    </key>
+                    <ref bean="query4132" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4133</value>
+                    </key>
+                    <ref bean="query4133" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4135</value>
+                    </key>
+                    <ref bean="query4135" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4136</value>
+                    </key>
+                    <ref bean="query4136" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="multiqueryhandler" class="com.bot.cqs.query.handler.MultiQueryHandler">
+        <property name="maxQueryCount" value="10"></property>
+        <property name="queryRequestDefinition">
+            <map>
+                <entry>
+                    <key>
+                        <value>4111</value>
+                    </key>
+                    <ref bean="query4111" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4112</value>
+                    </key>
+                    <ref bean="query4112" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4113</value>
+                    </key>
+                    <ref bean="query4113" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4114</value>
+                    </key>
+                    <ref bean="query4114" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4115</value>
+                    </key>
+                    <ref bean="query4115" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4116</value>
+                    </key>
+                    <ref bean="query4116" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4121</value>
+                    </key>
+                    <ref bean="query4121" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4122</value>
+                    </key>
+                    <ref bean="query4122" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4123</value>
+                    </key>
+                    <ref bean="query4123" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4124</value>
+                    </key>
+                    <ref bean="query4124" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4132</value>
+                    </key>
+                    <ref bean="query4132" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4133</value>
+                    </key>
+                    <ref bean="query4133" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4135</value>
+                    </key>
+                    <ref bean="query4135" />
+                </entry>
+                <entry>
+                    <key>
+                        <value>4136</value>
+                    </key>
+                    <ref bean="query4136" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+*/
+@import url(reset.css);
+
+#Popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+  overflow: auto;
+  font-family: Arial, '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+  overflow-x: hidden;
+  .pp_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background: url(../images/bg_popup.png) repeat;
+  }
+  .pp_con {
+    position: relative;
+    z-index: 99;
+    width: 96%;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    background: url(../images/pop_bg.png) top no-repeat;
+  }
+  .pp_con2 {
+    position: relative;
+    z-index: 99;
+    width: 96%;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    background: url(../images/end_bg.png) top no-repeat;
+  }
+  .pp_con {
+    width: 980px;
+    height: 100%;
+  }
+  img {
+    width: 100%;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    left: auto;
+    right: 10px;
+    width: 36px;
+    height: 33px;
+    display: block;
+    cursor: pointer;
+    background: url(../images/btn_close.png) no-repeat;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    -webkit-background-size: contain;
+    background-size: contain;
+    z-index: 100;
+  }
+}

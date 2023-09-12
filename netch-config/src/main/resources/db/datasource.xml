@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 資料庫連接 -->
+    <!-- JNDI -->
+	<!-- <bean id="netch-db" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>java:comp/env/jdbc/netchdb</value>
+        </property>
+    </bean> -->
+
+	<!-- Extend c3p0DataSource for DataSource Jasypt -->
+	<bean id="netch-db" class="com.bot.cqs.security.util.DataSourceJasypt">
+		<constructor-arg ref="c3p0DataSource" />
+	</bean>
+    <!-- Connection Pool DataSource -->
+    <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.pwd}" />
+    </bean>
+    
+    
+    
+</beans>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<format xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cqs.tch.org.tw/gateway">
+	<!-- 各類查詢訊息格式 -->
+    <message id="InquiryRequest" direction="U" field-counts="18">
+        <field index="0" type="X" length="7" desc="總機構代碼＋分支機構代碼" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代號"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="2" desc="所別"/>
+        <field index="8" type="X" length="7" desc="付費分行代碼"/>
+        <field index="9" type="9" length="3" desc="回覆資料序號"/>
+        <field index="10" type="X" length="1" desc="回覆資料格式"/>
+        <field index="11" type="X" length="10" desc="保留欄位"/>
+        <field index="12" type="X" length="1" desc="Continue Flag"/>
+        <field index="13" type="X" length="10" desc="查詢戶號" align="R"/>
+        <field index="14" type="X" length="10" desc="負責人戶號"/>
+        <field index="15" type="X" length="40" desc="戶名"/>
+        <field index="16" type="X" length="9" desc="開戶行戶號"/>
+        <field index="17" type="X" length="9" desc="開戶行帳號"/>
+        <transforms class="com.bot.cqs.gateway.persistence.InquiryLog">
+        	<rule field="inquiryDate" index="1" align="L" padding="0"/>
+        	<rule field="inquiryTime" index="2" align="L" padding="0"/>
+        	<rule field="inquiryTxCode" index="3"/>
+        	<rule field="msgId" index="4"/>
+        	<rule field="seqNo" index="5"/>
+        	<rule field="inquiryErrorCode" index="6"/>
+        	<rule field="inquiryTchId" index="7" align="L" padding="0"/>
+        	<rule field="inquiryChargeBankId" index="8"/>
+        	<rule field="inquiryResponseFormat" index="10"/>
+        	<rule field="continueFlag" index="12"/>
+        	<rule field="inquiryBizId" index="13" align="R" padding="0"/>
+        	<rule field="inquiryId" index="14" align="R" padding="0"/>
+        	<rule field="inquiryName" index="15"/>
+        	<rule field="inquiryBankCode" index="16" align="R" padding="0"/>
+        	<rule field="inquiryBankAccount" index="17" align="R" padding="0"/>
+        </transforms>
+    </message>
+
+    <!-- 各類查詢回覆訊息格式 -->
+    <message id="InquiryResponse" direction="D" field-counts="14">
+        <field index="0" type="X" length="7" desc="總機構代碼＋分支機構代碼" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代號"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="2" desc="所別"/>
+        <field index="8" type="X" length="7" desc="付費分行代碼"/>
+        <field index="9" type="9" length="3" desc="回覆資料序號"/>
+        <field index="10" type="X" length="1" desc="回覆資料格式"/>
+        <field index="11" type="X" length="10" desc="保留欄位"/>
+        <field index="12" type="X" length="1" desc="Continue Flag"/>
+        <field index="13" type="X" length="-1" desc="回覆資料"/>
+        <transforms class="com.bot.cqs.gateway.persistence.InquiryLog">
+        	<rule field="inquiryDate" index="1"/>
+        	<rule field="inquiryTime" index="2"/>
+        	<rule field="inquiryTxCode" index="3"/>
+        	<rule field="msgId" index="4"/>
+        	<rule field="seqNo" index="5"/>
+        	<rule field="inquiryErrorCode" index="6"/>
+        	<rule field="inquiryTchId" index="7"/>
+        	<rule field="inquiryChargeBankId" index="8"/>
+        	<rule field="inquiryResponseFormat" index="10"/>
+        	<rule field="continueFlag" index="12"/>
+        	<rule field="inquiryResponse" index="13"/>
+        </transforms>
+    </message>
+	
+	<!-- 2020/03/22 OBU 各類查詢訊息格式 -->
+    <message id="OBUInquiryRequest" direction="U" field-counts="18">
+        <field index="0" type="X" length="7" desc="總機構代碼＋分支機構代碼" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代號"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="2" desc="所別"/>
+        <field index="8" type="X" length="7" desc="付費分行代碼"/>
+        <field index="9" type="9" length="3" desc="回覆資料序號"/>
+        <field index="10" type="X" length="1" desc="回覆資料格式"/>
+        <field index="11" type="X" length="10" desc="保留欄位"/>
+        <field index="12" type="X" length="1" desc="Continue Flag"/>
+        <field index="13" type="X" length="8" desc="查詢戶號" align="R"/>
+        <field index="14" type="X" length="10" desc="負責人戶號"/>
+        <field index="15" type="X" length="120" desc="戶名"/>
+        <field index="16" type="X" length="9" desc="開戶行戶號"/>
+        <field index="17" type="X" length="9" desc="開戶行帳號"/>
+        <transforms class="com.bot.cqs.gateway.persistence.InquiryLog">
+        	<rule field="inquiryDate" index="1" align="L" padding="0"/>
+        	<rule field="inquiryTime" index="2" align="L" padding="0"/>
+        	<rule field="inquiryTxCode" index="3"/>
+        	<rule field="msgId" index="4"/>
+        	<rule field="seqNo" index="5"/>
+        	<rule field="inquiryErrorCode" index="6"/>
+        	<rule field="inquiryTchId" index="7" align="L" padding="0"/>
+        	<rule field="inquiryChargeBankId" index="8"/>
+        	<rule field="inquiryResponseFormat" index="10"/>
+        	<rule field="continueFlag" index="12"/>
+        	<rule field="inquiryBizId" index="13" align="R" padding="0"/>
+        	<rule field="inquiryId" index="14" align="R" padding="0"/>
+        	<rule field="inquiryName" index="15"/>
+        	<rule field="inquiryBankCode" index="16" align="R" padding="0"/>
+        	<rule field="inquiryBankAccount" index="17" align="R" padding="0"/>
+        </transforms>
+    </message>
+
+    <!-- 2020/03/22 OBU 各類查詢回覆訊息格式 -->
+    <message id="OBUInquiryResponse" direction="D" field-counts="14">
+        <field index="0" type="X" length="7" desc="總機構代碼＋分支機構代碼" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代號"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="2" desc="所別"/>
+        <field index="8" type="X" length="7" desc="付費分行代碼"/>
+        <field index="9" type="9" length="3" desc="回覆資料序號"/>
+        <field index="10" type="X" length="1" desc="回覆資料格式"/>
+        <field index="11" type="X" length="10" desc="保留欄位"/>
+        <field index="12" type="X" length="1" desc="Continue Flag"/>
+        <field index="13" type="X" length="-1" desc="回覆資料"/>
+        <transforms class="com.bot.cqs.gateway.persistence.InquiryLog">
+        	<rule field="inquiryDate" index="1"/>
+        	<rule field="inquiryTime" index="2"/>
+        	<rule field="inquiryTxCode" index="3"/>
+        	<rule field="msgId" index="4"/>
+        	<rule field="seqNo" index="5"/>
+        	<rule field="inquiryErrorCode" index="6"/>
+        	<rule field="inquiryTchId" index="7"/>
+        	<rule field="inquiryChargeBankId" index="8"/>
+        	<rule field="inquiryResponseFormat" index="10"/>
+        	<rule field="continueFlag" index="12"/>
+        	<rule field="inquiryResponse" index="13"/>
+        </transforms>
+    </message>
+    
+	<!-- Logon訊息格式 -->
+    <message id="L001" direction="U" field-counts="9">
+        <field index="0" type="X" length="7" desc="銀行代號" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代碼" init="L001"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="23" desc="保留欄位"/>
+        <field index="8" type="X" length="1" desc="Continue Flag" init="E"/>
+        <transforms class="com.bot.cqs.gateway.service.message.ConnectMsg">
+        	<rule field="bankId" index="0"/>
+        	<rule field="trxDate" index="1"/>
+        	<rule field="trxTime" index="2"/>
+        	<rule field="trxCode" index="3"/>
+        	<rule field="appropriative" index="4"/>
+        	<rule field="sequenceNo" index="5"/>
+        	<rule field="errCode" index="6"/>
+        	<rule field="reserved" index="7"/>
+        	<rule field="continueFlag" index="8"/>
+        </transforms>
+    </message>
+    
+	<!-- Logoff訊息格式 -->
+    <message id="L003" direction="D" field-counts="9">
+        <field index="0" type="X" length="7" desc="銀行代號" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代碼" init="L003"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="9" length="6" desc="查詢序號"/>
+        <field index="6" type="X" length="5" desc="錯誤代碼"/>
+        <field index="7" type="X" length="23" desc="保留欄位"/>
+        <field index="8" type="X" length="1" desc="Continue Flag" init="E"/>
+        <transforms class="com.bot.cqs.gateway.service.message.ConnectMsg">
+        	<rule field="bankId" index="0"/>
+        	<rule field="trxDate" index="1"/>
+        	<rule field="trxTime" index="2"/>
+        	<rule field="trxCode" index="3"/>
+        	<rule field="appropriative" index="4"/>
+        	<rule field="sequenceNo" index="5"/>
+        	<rule field="errCode" index="6"/>
+        	<rule field="reserved" index="7"/>
+        	<rule field="continueFlag" index="8"/>
+        </transforms>
+    </message>
+    
+	<!-- Start Services訊息格式 -->
+    <message id="S001" direction="D" field-counts="6">
+        <field index="0" type="X" length="7" desc="銀行代號" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代碼" init="S001"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="X" length="35" desc="保留欄位"/>
+        <transforms class="com.bot.cqs.gateway.service.message.ServiceSessionMsg">
+        	<rule field="bankId" index="0"/>
+        	<rule field="trxDate" index="1"/>
+        	<rule field="trxTime" index="2"/>
+        	<rule field="trxCode" index="3"/>
+        	<rule field="appropriative" index="4"/>
+        	<rule field="reserved" index="5"/>
+        </transforms>
+    </message>
+    
+	<!-- Stop Services訊息格式 -->
+    <message id="S005" direction="D" field-counts="6">
+        <field index="0" type="X" length="7" desc="銀行代號" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代碼" init="S005"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="X" length="35" desc="保留欄位"/>
+        <transforms class="com.bot.cqs.gateway.service.message.ServiceSessionMsg">
+        	<rule field="bankId" index="0"/>
+        	<rule field="trxDate" index="1"/>
+        	<rule field="trxTime" index="2"/>
+        	<rule field="trxCode" index="3"/>
+        	<rule field="appropriative" index="4"/>
+        	<rule field="reserved" index="5"/>
+        </transforms>
+    </message>
+    
+	<!-- Tping訊息格式 -->
+    <message id="T001" direction="U" field-counts="6">
+        <field index="0" type="X" length="7" desc="銀行代號" init="0040000"/>
+        <field index="1" type="D" length="8" desc="銀行端系統日期：YYYYMMDD"/>
+        <field index="2" type="T" length="6" desc="銀行端系統時間：HHmmss"/>
+        <field index="3" type="X" length="4" desc="交易代碼" init="T001"/>
+        <field index="4" type="X" length="20" desc="會員專用欄位"/>
+        <field index="5" type="X" length="35" desc="保留欄位"/>
+        <transforms class="com.bot.cqs.gateway.service.message.ServiceSessionMsg">
+        	<rule field="bankId" index="0"/>
+        	<rule field="trxDate" index="1"/>
+        	<rule field="trxTime" index="2"/>
+        	<rule field="trxCode" index="3"/>
+        	<rule field="appropriative" index="4"/>
+        	<rule field="reserved" index="5"/>
+        </transforms>
+    </message>
+
+</format>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config />
+    <context:component-scan base-package="com.iisigroup.batch.sample" />
+    <!-- @Repository -->
+    <context:component-scan base-package="com.iisigroup.cap.**.dao.impl" />
+    <!-- @Controller -->
+    <context:component-scan base-package="com.iisigroup.cap.**.plugin" />
+    <context:component-scan base-package="com.iisigroup.cap.**.handler">
+    	<context:exclude-filter expression="com\.iisigroup\.cap\.base\.handler\.ErrorCodeHandler" type="regex" />
+    </context:component-scan>
+    <!-- @Service -->
+    <context:component-scan base-package="com.iisigroup.cap.**.service.impl">
+	    <context:exclude-filter expression="com\.iisigroup\.cap\.base\.service\.impl\.ErrorCodeServiceImpl" type="regex" />
+	</context:component-scan>
+    
+    
+    <!-- @Page Report -->
+    <context:component-scan base-package="com.iisigroup.cap.**.page.report" />
+    
+    <!-- BOT_NETCH -->
+    <!-- @Command -->
+    <context:component-scan base-package="com.bot.cqs.query.command" />
+    <!-- @Controller -->
+	<context:component-scan base-package="com.bot.cqs.query.handler" />
+	<!-- @Service -->
+	<context:component-scan base-package="com.bot.cqs.query.service.impl" />
+	<!-- @Repository -->
+	<context:component-scan base-package="com.bot.cqs.query.dao.impl" />
+	<context:component-scan base-package="com.bot.cqs.query.util.factory" />
+	<context:component-scan base-package="com.bot.cqs.gateway.dao.impl" />
+	<!-- @Page Report -->
+	<context:component-scan base-package="com.bot.cqs.report.service.impl" />
+    
+	<bean id="accessControlService" class="com.iisigroup.cap.auth.service.impl.AccessCtrlServiceImpl"></bean>
+
+    <bean id="sysProp" class="com.iisigroup.cap.base.CapSystemProperties">
+        <property name="ignoreCache">
+            <list>
+                <value>TIME_OUT</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPaths">
+            <list>
+                <value>${freemarkDir}</value>
+            </list>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="defaultEncoding">${defaultEncoding}</prop>
+                <prop key="locale">${defaultLocale}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mqTCHListener" class="com.bot.cqs.gateway.service.listener.MQTCHListener" init-method="init" destroy-method="destroy"></bean>
+    <bean id="mqEAIListener" class="com.bot.cqs.gateway.service.listener.MQEAIListener" init-method="init" destroy-method="destroy"></bean>
+</beans>

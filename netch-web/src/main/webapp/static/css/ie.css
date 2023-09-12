@@ -1,0 +1,307 @@
+/*-------------------------
+
+   F U N C / E X T E N D
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\000037}}
+.part-wrapper {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000314}}
+.part .heading {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000319}}
+.part .p-block {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000323}}
+.part .p-block ol.upload-list div[class^="doc"] {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000331}}
+.additional, .btn {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000338}}
+.note-list li .heading, .note-list li .detail {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000345}}
+.card {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000349}}
+.card ol > li .g-part img {
+  behavior: url(js/PIE.htc);
+  position: relative;
+  z-index: 1;
+}
+
+/*-------------------------
+
+         I N I T
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000362}}
+html, body {
+  font-size: 18px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000366}}
+input[type="text"] {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #aaa;
+  font-size: 18px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000374}}
+select {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #aaa;
+  font-size: 18px;
+  background-image: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000383}}
+.f-13 {
+  font-size: 13px !important;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000387}}
+.f-14 {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\0000391}}
+.f-16 {
+  font-size: 16px;
+}
+
+/*-------------------------
+
+         M A I N
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003101}}
+#Document > * > section {
+  width: 980px;
+}
+
+/*-------------------------
+
+       H E A D E R
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003112}}
+.progress .pc {
+  font-size: 16px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003115}}
+.progress .bar {
+  behavior: url(js/PIE.htc);
+  z-index: 1;
+}
+
+/*-------------------------
+
+      F O O T E R
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003127}}
+footer > div section {
+  font-size: 12px;
+}
+
+/*-------------------------
+
+        I N D E X
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003137}}
+.t24_wh {
+  color: #333;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003142}}
+.index_banner .login .ex2-short {
+  width: 90%;
+  height: 30px;
+  font-size: 12px;
+  background: url("../images/mem_icon2.png") no-repeat white 10px 5px;
+  padding: 8px 8px 0 40px;
+  color: #666;
+  margin-bottom: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003151}}
+.index_banner .login .ex2-short2 {
+  width: 90%;
+  height: 30px;
+  font-size: 12px;
+  background: url("../images/bir_icon2.png") no-repeat white 10px 5px;
+  padding: 8px 8px 0 40px;
+  color: #666;
+}
+
+/*-------------------------
+
+         P A G E S
+
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003167}}
+h2.title, .part-wrapper > p:first-child {
+  font-size: 22px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003172}}
+.part .heading {
+  font-size: 20px;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003178}}
+.part .p-block li > span.special {
+  width: 154px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003181}}
+.part .p-block li label {
+  margin-right: 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003184}}
+.part .p-block li input[type="radio"] {
+  margin-right: -2px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003188}}
+.part .p-block ol.money div span {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003194}}
+.note {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003198}}
+.code {
+  font-size: 16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003202}}
+.otp .ex2-short {
+  height: 30px;
+  font-size: 12px;
+  padding: 0 10px;
+  width: 75%;
+  padding-top: 6px;
+}
+
+/*-------------------------
+      B U T T O N
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003214}}
+.btn {
+  font-size: 16px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003216}}
+.btn.next, .btn.confirm {
+  font-size: 22px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003219}}
+.btn.upload {
+  width: 90px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003222}}
+.btn.choose {
+  width: 120px;
+}
+
+/*-------------------------
+       U P L O A D
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003231}}
+.file-wrapper {
+  font-size: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003233}}
+.file-wrapper span {
+  padding: 5px 16px 5px 8px;
+  behavior: url(js/PIE.htc);
+  z-index: 1;
+}
+
+/*-------------------------
+         N O T E
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003244}}
+.note-list li {
+  font-size: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003246}}
+.note-list li .heading .fa {
+  font-size: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003249}}
+.note-list li .detail {
+  font-size: 15px;
+}
+
+/*-------------------------
+         C A R D
+-------------------------*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003258}}
+.pc-wrapper .heading span {
+  font-size: 22px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003260}}
+.pc-wrapper .heading span:after {
+  font-size: 22px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003266}}
+.card ol > li {
+  border-top: 1px solid #d7d7d7;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003268}}
+.card ol > li:first-child {
+  border-top: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003271}}
+.card ol > li p {
+  font-size: 13px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003274}}
+.card ol > li label {
+  margin-left: -2px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003278}}
+.card .benefit {
+  font-size: 13px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/shawnyhw6n9\/Documents\/myProject\/BOT_NETCH\/netch\/netch-web\/src\/WebDev\/netch-web\/module\/ie\.scss}line{font-family:\00003283}}
+.pp-note {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=ie.css.map */

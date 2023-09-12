@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- ①：對web包中的所有類進行掃描，以完成Bean創建和自動依賴注入的功能 -->
+    <context:component-scan base-package="com.iisigroup.cap.**.page" />
+    <bean class="com.bot.cqs.mvc.action.CHPageAction" />
+    <!-- ②：對模型視圖名稱的解析，即在模型視圖名稱添加前後綴 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/viewpage" p:suffix=".jsp" />
+    <!--配置國際化i18N信息 -->
+    <bean id="messageSource" class="com.iisigroup.cap.message.CapReloadableResourceBundleMessageSource">
+        <property name="languages" value="_zh_CN,_en,_zh_TW" />
+        <property name="basePath" value="classpath:/i18n" />
+        <property name="defaultEncoding" value="UTF-8" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
+    <bean id="localeResolver" class="com.iisigroup.cap.mvc.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="zh_TW" />
+    </bean>
+    <mvc:annotation-driven />
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="com.iisigroup.cap.mvc.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+        <bean id="userSecurityInterceptor" class="com.iisigroup.cap.mvc.Interceptor.CapUserSecurityInterceptor">
+        </bean>
+    </mvc:interceptors>
+</beans>

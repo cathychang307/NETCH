@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="DEBUG">
+    <properties>
+        <!-- 基本的文件的输出信息的配置 -->
+        <property name="GATEWAY_LOG_HOME">D:/IISI</property>
+        <property name="ETCH_LOG_HOME">D:/etch/logs</property>
+    </properties>
+    <appenders>
+        <!-- 定義控制台输出 -->
+        <CONSOLE name="CONSOLE" target="SYSTEM_OUT" follow="true">
+            <PatternLayout
+                    pattern="%d [%t] [%X{sessionId}] | %X{login} | %X{reqURI} | %-28.28c{1} [%-5p] %m%n"/>
+        </CONSOLE>
+        <!-- 文件日志 -->
+        <RollingRandomAccessFile name="gatewayLog"
+                                 fileName="${GATEWAY_LOG_HOME}/BOT_Gateway.log"
+                                 filePattern="${GATEWAY_LOG_HOME}/%d{yyyy-MM-dd}/BOT_Gateway%i.log"
+                                 createOnDemand="true">
+            <!--設定日誌級別-->
+            <Filters>
+                <ThresholdFilter level="DEBUG"/>
+            </Filters>
+            <!--輸出日誌的格式-->
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="102400KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+
+        <!-- 文件日志 -->
+         <RollingRandomAccessFile name="queryDefaultLog"
+                                 fileName="${ETCH_LOG_HOME}/etch_web.log"
+                                 filePattern="${ETCH_LOG_HOME}/%d{yyyy-MM-dd}/etch_web%i.log"
+                                 createOnDemand="true">
+             <!--設定日誌級別-->
+             <Filters>
+                 <ThresholdFilter level="INFO"/>
+             </Filters>
+             <!--輸出日誌的格式-->
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="102400KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <!--指定輸出日誌 -->
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <logger name="gatewayLog" level="DEBUG" additivity="false">
+            <appender-ref ref="gatewayLog"/>
+        </logger>
+        <logger name="queryDefaultLog" level="DEBUG" additivity="false">
+            <appender-ref ref="queryDefaultLog"/>
+        </logger>
+        <logger name="org" level="ERROR"/>
+        <logger name="net" level="ERROR"/>
+        <logger name="com.iisigroup" level="DEBUG"/>
+        <logger name="com.iisigroup.cap.web.CapHandlerServlet"
+                level="TRACE"/>
+        <logger name="com.iisigroup.cap.utils.CapBeanUtil"
+                level="TRACE"/>
+        <logger name="com.iisigroup.cap.jdbc.CapNamedJdbcTemplate"
+                level="TRACE"/>
+        <logger name="org.springframework.transaction" level="WARN"/>
+        <logger name="org.springframework.orm.hibernate3" level="WARN"/>
+        <logger name="org.hibernate.cache.EhCacheProvider" level="ERROR"/>
+        <logger name="net.sf.ehcache" level="ERROR"/>
+        <logger name="org.hibernate" level="ERROR"/>
+        <logger name="org.hibernate.SQL" level="DEBUG" additivity="true"/>
+        <logger name="org.hibernate.type" level="WARN"/>
+        <logger name="org.springframework.security" level="WARN"/>
+        <logger name="org.apache.commons" level="WARN"/>
+        <logger name="org.apache.velocity" level="WARN"/>
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="com.mchange.v2" level="WARN"/>
+    </loggers>
+</configuration>

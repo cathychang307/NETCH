@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans file:///D:/IISI/XSD/spring-beans.xsd
+        http://www.springframework.org/schema/security file:///D:/IISI/XSD/spring-security.xsd">
+        <!-- Develop Setting
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+        -->
+    <http pattern="/img/**" security="none" />
+    <http pattern="/**/images/**" security="none" />
+    <http pattern="/jquery/**" security="none" />
+    <http pattern="/**/**.css" security="none" />
+    <http pattern="/**/**.js" security="none" />
+    <http pattern="/i18njs" security="none" />
+    <http pattern="/captcha.png*" security="none" />
+    <http pattern="/app/error/message*" security="none" />
+    <http pattern="/page/login*" security="none" />
+    <http pattern="/page/noLogin" security="none" />
+    <http pattern="/page/error" security="none" />
+    <http auto-config="false" access-decision-manager-ref="accessDecisionManager" entry-point-ref="etchAuthenticationEntryPoint" use-expressions="false" disable-url-rewriting="false" authentication-manager-ref="noSsoAuthenticationManager">
+        <headers disabled="true" />
+        <csrf disabled="true" />
+        <access-denied-handler error-page="/page/error" />
+        <intercept-url pattern="/page/home/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/page/index" access="IS_AUTHENTICATED_FULLY" />
+        <intercept-url pattern="/page/common/*" access="IS_AUTHENTICATED_FULLY" />
+        <intercept-url pattern="/page/**" access="${systemType}" />
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <anonymous enabled="false" />
+        <!-- NoSSO authentication -->
+        <form-login always-use-default-target="true" login-page="/page/login" default-target-url="/page/index" authentication-failure-handler-ref="ajaxAuthenticationFailureHandler" username-parameter="j_username" password-parameter="j_password" login-processing-url="/j_spring_security_check" />
+        <!-- SSO authentication -->
+        <custom-filter position="PRE_AUTH_FILTER" ref="ssoPreAuthenticationProcessingFilter" />
+        <session-management invalid-session-url="/page/noLogin">
+            <concurrency-control max-sessions="1" expired-url="/page/noLogin" session-registry-ref="sessionRegistry" /> <!-- exception-if-maximum-exceeded="true" -->
+        </session-management>
+        <logout logout-url="/j_spring_security_logout" success-handler-ref="etchLogoutHandler" delete-cookies="JSESSIONID"/>
+    </http>
+        
+        
+	<beans:bean id="etchLogoutHandler" class="com.bot.cqs.security.handler.EtchLogoutHandler">
+		<beans:property name="defaultTargetUrl" value="${logout.url}" /><!--logout-success-url  /page/login -->
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+	</beans:bean>
+    <beans:bean id="etchAuthenticationEntryPoint" class="com.bot.cqs.security.entryPoint.EtchAuthenticationEntryPoint">
+        <beans:constructor-arg value="/page/login" />
+        <beans:property name="forceHttps" value="false" />
+    </beans:bean>
+    <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:constructor-arg name="decisionVoters">
+            <beans:list>
+                <!-- cap-auth-admin start -->
+                <beans:bean class="com.iisigroup.cap.auth.vote.CapPermissionVoter">
+                    <beans:property name="rolePrefix" value="${systemType}" />
+                    <beans:property name="securityService" ref="accessControlService" />
+                    <beans:property name="stripQueryStringFromUrls" value="true" />
+                </beans:bean>
+                <!-- cap-auth-admin end -->
+                <beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+            </beans:list>
+        </beans:constructor-arg>
+        <beans:property name="allowIfAllAbstainDecisions" value="false" />
+    </beans:bean>
+    <beans:bean id="loggerListener" class="org.springframework.security.access.event.LoggerListener" />
+    <!-- Security context -->
+    <beans:bean id="capSecurityContext" class="com.iisigroup.cap.security.CapSecurityContext" scope="session" />
+    
+    
+    
+    <!-- NoSSO authentication -->
+    <authentication-manager id="noSsoAuthenticationManager">
+        <authentication-provider ref="noSsoAuthenticationProvider" />
+    </authentication-manager>
+    <beans:bean id="noSsoAuthenticationProvider" class="com.bot.cqs.security.provider.NoSsoAuthenticationProvider" p:userService-ref="noSsoUserDetailsService"/>
+    <beans:bean id="noSsoUserDetailsService" class="com.bot.cqs.security.service.NoSsoUserDetailsService" />
+    
+    
+    
+    <!-- SSO authentication -->
+	<beans:bean id="ssoPreAuthenticationProcessingFilter" class="com.bot.cqs.security.filter.SsoPreAuthenticationProcessingFilter">
+		<beans:property name="principalRequestKey" value="employee_id" />
+		<beans:property name="credentialsRequestKey" value="jumper_id" />
+		<beans:property name="authenticationManager" ref="ssoAuthenticationManager" />
+		<beans:property name="exceptionIfRequestMissing" value="false" />
+		<beans:property name="checkForPrincipalChanges" value="true" />
+		<beans:property name="authenticationSuccessHandler" ref="successHandler" />
+		<beans:property name="authenticationFailureHandler" ref="failureHandler" />
+	</beans:bean>
+    <beans:bean id="ssoAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+	    <beans:constructor-arg>
+	        <beans:list>
+	            <beans:ref bean="ssoPreAuthenticationProvider" />
+	        </beans:list>
+	    </beans:constructor-arg>
+	</beans:bean>
+    <beans:bean id="ssoPreAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+		<beans:property name="preAuthenticatedUserDetailsService" ref="ssoUserDetailsService" />
+	</beans:bean>
+	<beans:bean id="ssoUserDetailsService" class="com.bot.cqs.security.service.SsoUserDetailsService"></beans:bean>
+	<beans:bean id="dummySsoCheckManager" class="com.bot.cqs.signon.service.impl.DummySsoCheckManagerImpl">
+        <beans:property name="checkJumperUrl" value="/sso/ssoDummy.properties" />
+        <beans:property name="infoPermitUrl" value="http://web.bot.com.tw/webservices/InfoPermit.asp" />
+        <beans:property name="parameterEncoding" value="UTF-8" />
+        <beans:property name="inputEncoding" value="big5" />
+        <beans:property name="connectionTimeout" value="125" />
+        <beans:property name="hostnameVerifier" ref="ssoHostnameVerifier" />
+        <beans:property name="x509TrustManagers">
+            <beans:list>
+                <beans:ref bean="ssoTrustManager" />
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+	<beans:bean id="ssoCheckManager" class="com.bot.cqs.signon.service.impl.SsoCheckManagerImpl">
+        <beans:property name="checkJumperUrl" value="http://web.bot.com.tw/webservices/Check_Jumper.asp" />
+        <beans:property name="infoPermitUrl" value="http://web.bot.com.tw/webservices/InfoPermit.asp" />
+        <beans:property name="parameterEncoding" value="UTF-8" />
+        <beans:property name="inputEncoding" value="big5" />
+        <beans:property name="connectionTimeout" value="125" />
+        <beans:property name="hostnameVerifier" ref="ssoHostnameVerifier" />
+        <beans:property name="x509TrustManagers">
+            <beans:list>
+                <beans:ref bean="ssoTrustManager" />
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    <!-- 對 single signon 使用 SSL 時的 trust manager -->
+    <beans:bean id="ssoTrustManager" class="com.bot.cqs.signon.util.ssl.SimpleX509TrustManager">
+    </beans:bean>
+    <!-- 對 single signon 使用 SSL 時的信任網站 -->
+    <beans:bean id="ssoHostnameVerifier" class="com.bot.cqs.signon.util.ssl.SimpleHostnameVerifier">
+        <beans:property name="trustHostnameList">
+            <beans:list>
+	            <beans:value>tweb.bot.com.tw</beans:value>
+                <beans:value>web.bot.com.tw</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+	
+	<beans:bean id="successHandler" class="com.bot.cqs.security.handler.EtchSimpleUrlAuthenticationSuccessHandler">
+        <beans:property name="defaultTargetUrl" value="/page/index" />
+        <beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+    </beans:bean>
+    <beans:bean id="failureHandler" class="com.bot.cqs.security.handler.EtchSimpleUrlAuthenticationFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/page/error" />
+    </beans:bean>
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+<!-- 	<beans:bean id="sas" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy"> -->
+<!--         <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" /> -->
+<!--         <beans:property name="maximumSessions" value="1" /> -->
+<!--     </beans:bean> -->
+	
+    
+</beans:beans>

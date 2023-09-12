@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- 延遲x秒啟動Scheduler -->
+        <property name="startupDelay" value="60" />
+        <!-- 是否自動啟動 -->
+        <property name="autoStartup" value="true" />
+        <property name="waitForJobsToCompleteOnShutdown" value="true" />
+        <!-- 外部設定檔 -->
+        <property name="configLocation" value="classpath:batch/quartz.properties" />
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+        <property name="triggers">
+            <list>
+                <ref bean="cleanGatewayLogCronTrigger" />
+                <ref bean="cleanEtchLogCronTrigger" />
+                <ref bean="startServiceCronTrigger" />
+                <ref bean="stopServiceCronTrigger" />
+                <ref bean="tpingCronTrigger" />
+                <ref bean="cacheCleanerCronTrigger" />
+                <ref bean="mqCleaner1CronTrigger" />
+                <ref bean="mqCleaner2CronTrigger" />
+                <!-- <ref bean="mqCleaner3CronTrigger"/> -->
+                <!-- <ref bean="mqCleaner4CronTrigger"/> -->
+                <ref bean="mqCleaner5CronTrigger" />
+<!--                <ref bean="restartMQConnServiceCronTrigger" />-->
+                <ref bean="checkMQConnServiceCronTrigger" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- BOT CQS 使用到的 Scheduler，包含接收：start、stop、tping三種訊息 -->
+    <bean id="messageResolverForConnService" class="com.bot.cqs.gateway.service.BOTMessageResolverForConnService" />
+    <bean id="cacheCleaner" class="com.bot.cqs.gateway.service.BOTCacheCleaner" />
+    <bean id="messageCleaner" class="com.bot.cqs.gateway.service.BOTMQMessageCleaner" />
+    <!-- <bean id="logCleaner" class="com.bot.cqs.batch.job.FileDeleteJob" /> -->
+    <bean id="gatewayLogsZipper" class="com.bot.cqs.batch.job.LogsZipper">
+        <constructor-arg>
+            <value>classpath:batch/BOTGateway.properties</value>
+        </constructor-arg>
+    </bean>
+    <bean id="etchLogsZipper" class="com.bot.cqs.batch.job.LogsZipper">
+        <constructor-arg>
+            <value>classpath:batch/LogsZipper.properties</value>
+        </constructor-arg>
+    </bean>
+    <bean id="checkMQConnService" class="com.bot.cqs.gateway.service.BOTCheckMQConnService" />
+
+    <bean id="cleanGatewayLogMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="gatewayLogsZipper" />
+        <property name="targetMethod" value="doZipJob" />
+    </bean>
+
+    <bean id="cleanEtchLogMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="etchLogsZipper" />
+        <property name="targetMethod" value="doZipJob" />
+    </bean>
+
+    <bean id="tpingMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageResolverForConnService" />
+        <property name="targetMethod" value="ping" />
+    </bean>
+
+    <bean id="startServiceMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageResolverForConnService" />
+        <property name="targetMethod" value="start" />
+    </bean>
+
+    <bean id="stopServiceMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageResolverForConnService" />
+        <property name="targetMethod" value="stop" />
+    </bean>
+
+    <bean id="cacheCleanerMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="cacheCleaner" />
+        <property name="targetMethod" value="clean" />
+    </bean>
+
+    <bean id="mqCleaner1MethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageCleaner" />
+        <property name="targetMethod" value="clean" />
+        <property name="arguments">
+            <list>
+                <value>F0040000.APPLICATION.LOCAL.QUEUE</value>
+                <value>Dispatch</value>
+                <value>6</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mqCleaner2MethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageCleaner" />
+        <property name="targetMethod" value="clean" />
+        <property name="arguments">
+            <list>
+                <value>F0040000.OUT.LOCAL.QUEUE</value>
+                <value>Dispatch</value>
+                <value>6</value>
+            </list>
+        </property>
+    </bean>
+    <!-- <bean id="mqCleaner3MethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageCleaner" />
+        <property name="targetMethod" value="clean" />
+        <property name="arguments">
+            <list>
+                <value>F0040000.IN.REMOTE.QUEUE.SIM</value>
+                <value>TCH</value>
+                <value>20</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="mqCleaner4MethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageCleaner" />
+        <property name="targetMethod" value="clean" />
+        <property name="arguments">
+            <list>
+                <value>ETCH.RS2.NEAI3</value>
+                <value>EAI</value>
+                <value>20</value>
+            </list>
+        </property>
+    </bean> -->
+
+    <bean id="mqCleaner5MethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="messageCleaner" />
+        <property name="targetMethod" value="clean" />
+        <property name="arguments">
+            <list>
+                <value>ETCH.RQ2</value>
+                <value>EAI</value>
+                <value>6</value>
+            </list>
+        </property>
+    </bean>
+
+<!--    <bean id="restartMQConnServiceMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+<!--        <property name="targetObject" ref="checkMQConnService" />-->
+<!--        <property name="targetMethod" value="restartMQConnService" />-->
+<!--        <property name="arguments">-->
+<!--            <list>-->
+<!--                <value>5</value>&lt;!&ndash; 重試次數 &ndash;&gt;-->
+<!--                <value>10</value>&lt;!&ndash; 重試等候秒數 &ndash;&gt;-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+    <bean id="checkMQConnServiceMethodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="concurrent" value="false" />
+        <property name="targetObject" ref="checkMQConnService" />
+        <property name="targetMethod" value="checkALLConnService" />
+        <property name="arguments">
+            <list>
+                <value>5</value><!-- 重試次數 -->
+                <value>10</value><!-- 重試等候秒數 -->
+            </list>
+        </property>
+    </bean>
+
+<!--    <bean id="restartMQConnServiceCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+<!--        <property name="jobDetail">-->
+<!--            <ref bean="restartMQConnServiceMethodInvokingJobDetail" />-->
+<!--        </property>-->
+<!--        <property name="cronExpression">-->
+<!--            <value>0 0 7 * * ?</value>&lt;!&ndash; 每天早上7點開始重啟EAI和TCH連線排程 &ndash;&gt;-->
+<!--        </property>-->
+<!--    </bean> -->
+
+    <bean id="checkMQConnServiceCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="checkMQConnServiceMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>5 0/5 * * * ?</value><!-- 每小時的0分開始，每5分鐘觸發確認TCH/EAI連線排程 -->
+        </property>
+    </bean>
+
+    <bean id="cleanGatewayLogCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cleanGatewayLogMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression" value="0 0 3 * * ?"></property><!-- (秒 分 小時 每月第幾天 月 每星期第幾天 年) -->
+    </bean>
+
+    <bean id="cleanEtchLogCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cleanEtchLogMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression" value="0 30 3 * * ?"></property><!-- (秒 分 小時 每月第幾天 月 每星期第幾天 年) -->
+    </bean>
+
+    <bean id="tpingCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="tpingMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>2 0/5 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="startServiceCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="startServiceMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/5 7,8 * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="stopServiceCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="stopServiceMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>5 0/10 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="cacheCleanerCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cacheCleanerMethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/10 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="mqCleaner5CronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mqCleaner5MethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/10 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="mqCleaner1CronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mqCleaner1MethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>7 0/10 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="mqCleaner2CronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mqCleaner2MethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/10 * * * ?</value>
+        </property>
+    </bean>
+    <!-- <bean id="mqCleaner3CronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mqCleaner3MethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/10 * * * ?</value>
+        </property>
+    </bean>
+    <bean id="mqCleaner4CronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="mqCleaner4MethodInvokingJobDetail" />
+        </property>
+        <property name="cronExpression">
+            <value>0 0/10 * * * ?</value>
+        </property>
+    </bean> -->
+
+</beans>

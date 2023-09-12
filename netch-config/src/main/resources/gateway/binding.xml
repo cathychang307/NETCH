@@ -1,0 +1,198 @@
+<binding>
+	<mapping name="TYPE_12" class="tw.org.tch.cqs.gateway.message.response.Type12">
+		<structure field="format001"/>
+		<structure field="format003" usage="optional"/>
+		<structure field="format004" usage="optional"/>
+	</mapping>
+	
+	<mapping name="FORMAT_001" class="tw.org.tch.cqs.gateway.message.response.Format001">
+		<value style="attribute" name="FID" field="fid"/>
+		<value style="attribute" name="END_DATE" field="endDate"/>
+		<value style="attribute" name="QUERY_ID" field="queryId"/>
+		<value style="attribute" name="DIRECTOR_ID" field="directorId"/>
+		<value style="attribute" name="UED_DCC" field="uedDcc"/>
+		<value style="attribute" name="UED_BCA" field="uedBca"/>
+		<value style="attribute" name="UMS_BCC" field="umsBcc"/>
+		<value style="attribute" name="UMS_BCA" field="umsBca"/>
+		<value style="attribute" name="SD_BCC" field="sdBcc"/>
+		<value style="attribute" name="SD_BCA" field="sdBca"/>
+		<value style="attribute" name="CPE_BCC" field="cpeBcc"/>
+		<value style="attribute" name="CPE_BCA" field="cpeBca"/>
+		<value style="attribute" name="POR_UED_BCC" field="porUedBcc"/>
+		<value style="attribute" name="POR_UED_BCA" field="porUedBca"/>
+		<value style="attribute" name="POR_UMS_BCC" field="porUmsBcc"/>
+		<value style="attribute" name="POR_UMS_BCA" field="porUmsBca"/>
+		<value style="attribute" name="POR_SD_BCC" field="porSdBcc"/>
+		<value style="attribute" name="POR_SD_BCA" field="porSdBca"/>
+		<value style="attribute" name="POR_CPE_BCC" field="porCpeBcc"/>
+		<value style="attribute" name="POR_CPE_BCA" field="porCpeBca"/>
+		<value style="attribute" name="REJECT_DATE" field="rejectDate"/>
+		<value style="attribute" name="REJECT_END_DATE" field="rejectEndDate"/>
+		<value style="attribute" name="TERM_DATE" field="termDate"/>
+		<value style="attribute" name="TERM_EXPR_DATE" field="termExprDate"/>
+		<value style="attribute" name="FAKE_CNT" field="fakeCnt"/>
+		<value style="attribute" name="ACCT_CNT" field="acctCnt"/>
+		<value style="attribute" name="ACCT_CODE" field="acctCode"/>
+		<value style="attribute" name="ACCT_NO" field="acctNo"/>
+		<value style="attribute" name="QRY_RLT" field="qryRlt"/>
+		<value style="attribute" name="COE_CMT" field="coeCmt"/>
+		<value style="attribute" name="IMP_INFO_CMT" field="impInfoCmt"/>
+		<value style="attribute" name="REL_CNT" field="relCnt"/>
+		<value style="attribute" name="DTL_CNT" field="dtlCnt"/>
+		<value style="attribute" name="QRY_NAME" field="qryName"/>
+		<value style="attribute" name="RESERVED" field="reserved"/>
+		<value style="attribute" name="IMP_INFO" field="impInfo"/>
+		<value style="attribute" name="BACKUP" field="backup"/>
+		<value style="attribute" name="REJ_SEASON" field="rejSeason"/> <!-- new for OBU -->
+		<value style="attribute" name="STS_CNT" field="stsCnt"/> <!-- new for OBU -->
+	</mapping>
+	
+	<mapping name="FORMAT_003" class="tw.org.tch.cqs.gateway.message.response.Format003">
+		<value style="attribute" name="FID" field="fid"/>
+		<collection field="f003s" item-type="tw.org.tch.cqs.gateway.message.response.F003"/>
+	</mapping>
+	
+	<mapping name="F003" class="tw.org.tch.cqs.gateway.message.response.F003">
+		<value style="attribute" name="REL_ACCT" field="relAcct"/>
+		<value style="attribute" name="REL_NAME" field="relName"/>
+		<value style="attribute" name="RESERVED" field="reserved"/>
+	</mapping>
+	
+	<mapping name="FORMAT_004" class="tw.org.tch.cqs.gateway.message.response.Format004">
+		<value style="attribute" name="FID" field="fid"/>
+		<collection field="f004s" item-type="tw.org.tch.cqs.gateway.message.response.F004"/>
+	</mapping>
+	
+	<mapping name="F004" class="tw.org.tch.cqs.gateway.message.response.F004">
+		<value style="attribute" name="BC_DATE" field="bcDate"/>
+		<value style="attribute" name="BC_BANK_CODE" field="bcBankCode"/>
+		<value style="attribute" name="ACCT_NO" field="acctNo"/>
+		<value style="attribute" name="CHK_NO" field="chkNo"/>
+		<value style="attribute" name="BC_AMT" field="bcAmt"/>
+		<value style="attribute" name="BC_REASON" field="bcReason"/>
+		<value style="attribute" name="POR_DATE" field="porDate"/>
+		<value style="attribute" name="REMARK" field="remark"/>
+		<value style="attribute" name="COMMENT" field="comment"/>
+		<value style="attribute" name="CURRENCY_CODE" field="currencyCode"/>	 <!-- new for OBU -->	
+	</mapping>
+	
+	<mapping name="TYPE_A" class="tw.org.tch.cqs.gateway.message.response.TypeA">
+		<structure field="format005"/>
+		<structure field="format006" usage="optional"/>
+		<structure field="format007" usage="optional"/>
+		<structure field="format008" usage="optional"/>
+	</mapping>
+	
+	<mapping name="FORMAT_005" class="tw.org.tch.cqs.gateway.message.response.Format005">
+		<value style="attribute" name="FID" field="fid"/>
+		<value style="attribute" name="END_DATE" field="endDate"/>
+		<value style="attribute" name="REJECT_ID" field="rejectId"/>
+		<value style="attribute" name="INQUIRY_ID" field="inquiryId"/>
+		<value style="attribute" name="DIRECTOR_ID" field="directorId"/>
+		<value style="attribute" name="INQUIRY_RESULT" field="inquiryResult"/>
+		<value style="attribute" name="COE_CMT" field="coeCmt"/>
+		<value style="attribute" name="LA_BCC" field="laBcc"/>
+		<value style="attribute" name="LA_BC_UPORC" field="laBcUporc"/>
+		<value style="attribute" name="LA_BC_UPORA" field="laBcUpora"/>
+		<value style="attribute" name="LA_BC_PORC" field="laBcPorc"/>
+		<value style="attribute" name="LA_BC_PORA" field="laBcPora"/>
+		<value style="attribute" name="INQ_CNT" field="inqCnt"/>
+		<value style="attribute" name="ACC_CNT" field="accCnt"/>
+		<value style="attribute" name="INQ_NAME" field="inqName"/>
+		<value style="attribute" name="LA_DUER" field="laDuer"/>
+		<value style="attribute" name="BACKUP" field="backup"/>
+		<value style="attribute" name="BC_TYPE" field="bcType"/> <!-- new for OBU -->	
+		<value style="attribute" name="CURRENCY_CODE" field="currencyCode"/> <!-- new for OBU -->	
+		<value style="attribute" name="UN_POR_COUNT" field="unPorCount"/> <!-- new for OBU -->	
+		<value style="attribute" name="UN_POR_AMT" field="unPorAmt"/> <!-- new for OBU -->	
+		<value style="attribute" name="POR_COUNT" field="porCount"/> <!-- new for OBU -->	
+		<value style="attribute" name="POR_AMT" field="porAmt"/> <!-- new for OBU -->	
+	</mapping>
+
+	<mapping name="FORMAT_006" class="tw.org.tch.cqs.gateway.message.response.Format006">
+		<value style="attribute" name="FID" field="fid"/>
+		<collection field="f006s" item-type="tw.org.tch.cqs.gateway.message.response.F006"/>
+	</mapping>
+	
+	<mapping name="F006" class="tw.org.tch.cqs.gateway.message.response.F006">
+		<value style="attribute" name="BC_DATE" field="bcDate"/>
+		<value style="attribute" name="BC_BANK_CODE" field="bcBank"/>
+		<value style="attribute" name="AMOUNT" field="amount"/>
+		<value style="attribute" name="BC_REASON" field="bcReason"/>
+		<value style="attribute" name="POR_DATE" field="porDate"/>
+		<value style="attribute" name="RESERVED" field="reserved"/>
+	</mapping>
+	
+	<mapping name="FORMAT_007" class="tw.org.tch.cqs.gateway.message.response.Format007">
+		<value style="attribute" name="FID" field="fid"/>
+		<collection field="f007s" item-type="tw.org.tch.cqs.gateway.message.response.F007"/>
+	</mapping>
+	
+	<mapping name="F007" class="tw.org.tch.cqs.gateway.message.response.F007">
+		<value style="attribute" name="INQUIRY_DATE" field="inquiryDate"/>
+		<value style="attribute" name="INQ_ACC_NAME" field="inqAccName"/>
+		<value style="attribute" name="RESERVED" field="reserved"/>
+	</mapping>
+	
+	<mapping name="FORMAT_008" class="tw.org.tch.cqs.gateway.message.response.Format008">
+		<value style="attribute" name="FID" field="fid"/>
+		<collection field="f008s" item-type="tw.org.tch.cqs.gateway.message.response.F008"/>
+	</mapping>
+	
+	<mapping name="F008" class="tw.org.tch.cqs.gateway.message.response.F008">
+		<value style="attribute" name="ACC_NAME" field="accName"/>
+		<value style="attribute" name="ACC_BANK" field="accBank"/>
+		<value style="attribute" name="ACC_DATE" field="accDate"/>
+		<value style="attribute" name="CLEAR_DATE" field="clearDate"/>
+		<value style="attribute" name="ACC_NUM" field="accNum"/>
+		<value style="attribute" name="RESERVED" field="reserved"/>
+	</mapping>
+	
+	<mapping name="TYPE_B" class="tw.org.tch.cqs.gateway.message.response.TypeB">
+		<value style="attribute" name="FID" field="fid"/>
+		<value style="attribute" name="END_DATE" field="endDate"/>
+		<value style="attribute" name="INQ_ID" field="inqId"/>
+		<value style="attribute" name="DIRECTOR_ID" field="directorId"/>
+		<value style="attribute" name="INQ_RESULT" field="inqResult"/>
+		<value style="attribute" name="COE_COM" field="coeCom"/>
+		<value style="attribute" name="LA_BC_UPORD1" field="laBcUpord1"/>
+		<value style="attribute" name="LA_BC_UPORA1" field="laBcUpora1"/>
+		<value style="attribute" name="LA_BC_UPORR1" field="laBcUporr1"/>
+		<value style="attribute" name="LA_BC_UPORD2" field="laBcUpord2"/>
+		<value style="attribute" name="LA_BC_UPORA2" field="laBcUpora2"/>
+		<value style="attribute" name="LA_BC_UPORR2" field="laBcUporr2"/>
+		<value style="attribute" name="LA_BC_UPORD3" field="laBcUpord3"/>
+		<value style="attribute" name="LA_BC_UPORA3" field="laBcUpora3"/>
+		<value style="attribute" name="LA_BC_UPORR3" field="laBcUporr3"/>
+		<value style="attribute" name="LA_BC_PORD1" field="laBcPord1"/>
+		<value style="attribute" name="LA_BC_PORA1" field="laBcPora1"/>
+		<value style="attribute" name="LA_BC_POD1" field="laBcPod1"/>
+		<value style="attribute" name="LA_BC_PORR1" field="laBcPorr1"/>
+		<value style="attribute" name="LA_BC_PORD2" field="laBcPord2"/>
+		<value style="attribute" name="LA_BC_PORA2" field="laBcPora2"/>
+		<value style="attribute" name="LA_BC_POD2" field="laBcPod2"/>
+		<value style="attribute" name="LA_BC_PORR2" field="laBcPorr2"/>
+		<value style="attribute" name="LA_BC_PORD3" field="laBcPord3"/>
+		<value style="attribute" name="LA_BC_PORA3" field="laBcPora3"/>
+		<value style="attribute" name="LA_BC_POD3" field="laBcPod3"/>
+		<value style="attribute" name="LA_BC_PORR3" field="laBcPorr3"/>
+		<value style="attribute" name="INQ_CNT" field="inqCnt"/>
+		<value style="attribute" name="INQ_DATE1" field="inqDate1"/>
+		<value style="attribute" name="INQ_ACC_NAME1" field="inqAccName1"/>
+		<value style="attribute" name="INQ_DATE2" field="inqDate2"/>
+		<value style="attribute" name="INQ_ACC_NAME2" field="inqAccName2"/>
+		<value style="attribute" name="INQ_DATE3" field="inqDate3"/>
+		<value style="attribute" name="INQ_ACC_NAME3" field="inqAccName3"/>
+		<value style="attribute" name="INQ_NAME" field="inqName"/>
+		<value style="attribute" name="LA_DUER" field="laDuer"/>
+		<value style="attribute" name="BACKUP" field="backup"/>
+	</mapping>
+	
+	<mapping name="TYPE_34" class="tw.org.tch.cqs.gateway.message.response.Type34"> <!-- new for OBU -->	
+		<structure field="format001"/>
+		<structure field="format003" usage="optional"/>
+		<structure field="format004" usage="optional"/>
+		<structure field="format005" usage="optional"/>
+	</mapping>
+	
+</binding>
